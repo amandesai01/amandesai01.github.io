@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	
+  <title>{{ page.title }}</title>
+  {% include cssincludes.html %}
+</head>
+
+<body>
+	<!--================ Start Header Area =================-->
+	
+            {% include navbar.html %}
+    <!-- </div> -->
+    <!-- </header> -->
+    
+    <br>
+
+	<!--================ End Header Area =================-->
+
+  <!--================ Start Banner Area =================-->
+  <!--================ End Banner Area =================-->
+
+	<!--================Blog Area =================-->
+	<section class="blog_area single-post-area section-margin">
+			<div class="container">
+					<div class="row">
+							<div class="col-lg-8 posts-list">
+									<div class="single-post">
+													<div class="feature-img">
+															<img class="img-fluid" src="{{ page.featureimage }}" alt="">
+													</div>
+											<div class="blog_details">
+													<h2>{{ page.title }}</h2>
+                              <ul class="blog-info-link mt-3 mb-4">
+                                <li><a href="#"><i class="ti-user"></i> {{ page.categories }}</a></li>
+                                <!-- <li><a href="#"><i class="ti-comments"></i> 03 Comments</a></li> -->
+                              </ul>
+                              {{ content }}
+						</div>
+                  </div>
+			</div>
+	</section>
+	<!--================Blog Area =================-->
+
+        
+  <!--================Footer Area =================-->
+	{% include footer.html %}
+  <!--================End Footer Area =================-->
+  
+    {% include scriptinclude.html %}
+</body>
+
+</html>

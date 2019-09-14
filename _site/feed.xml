@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-15T05:21:24+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Aman Desai</title><entry><title type="html">Keep your Girlfriend happy, with Centroid Decomposition</title><link href="http://localhost:4000/keep-girlfriend-happy-with-centroid-decomposition" rel="alternate" type="text/html" title="Keep your Girlfriend happy, with Centroid Decomposition" /><published>2019-09-15T00:00:00+05:30</published><updated>2019-09-15T00:00:00+05:30</updated><id>http://localhost:4000/keep-girlfriend-happy-with-centroid-decomposition</id><content type="html" xml:base="http://localhost:4000/keep-girlfriend-happy-with-centroid-decomposition">&lt;h1 id=&quot;keep-your-girlfriend-happy-with-centroid-decomposition&quot;&gt;Keep your Girlfriend happy, with Centroid Decomposition&lt;/h1&gt;
+
+&lt;p&gt;&lt;b&gt; This is just analysis of human nature combined with some Algorithms. Just for Fun. &lt;/b&gt;
+&lt;br /&gt;
+So today, we are going to analyze human behavior using a very famous data-structure &lt;b&gt;Trees&lt;/b&gt;. We will be using:-&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;DFS - Depth First Search&lt;/li&gt;
+  &lt;li&gt;A graph structure&lt;/li&gt;
+  &lt;li&gt;A tree structure&lt;/li&gt;
+  &lt;li&gt;and most importatntly, Centroid Decomposition&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;theorm-1-jordan-1869&quot;&gt;Theorm 1 (Jordan, 1869):&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Given a tree with N nodes,  there  exists a vertex whose  removal partitions the tree into components, each with at most N/2 nodes. (i.e. For any given tree, the centroid always exists)&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;what-will-we-be-doing-&quot;&gt;What will we be doing:-&lt;/h4&gt;
+&lt;p&gt;&lt;b&gt; Dont worry if you dont understand. You will, when you see example below. &lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;
+We will be maintaining a register of different actions we perform, a happiness rating, and a unique ID assigned to it. Again, you can use any data structure to store this, e.g. 2D Arrays, Maps, MySQL Database, and so on. Next task is gathering information. You need to keep a track of your action and your partner's reaction, rate it properly, save it somewhere.
+&lt;i&gt;For Rating, I will be uploading a perfect rating algorithm later on, so stay tuned 😉. Till then, rate according to your own guess.&lt;/i&gt; &lt;/p&gt;
+&lt;p&gt;
+Other thing you need to implement is a real-time graph, stating all IDs of events in relation with each other. We create a node for each event, lable it with unique-Id assigned.&lt;/p&gt;
+
+&lt;h2 id=&quot;real-life-implemntation&quot;&gt;Real-Life Implemntation:&lt;/h2&gt;
+&lt;p&gt;Consider following set of actions:-
+&lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt; I took her to movie. (Happiness 200, #1) 
+ &lt;ul&gt;&lt;li&gt; Buy Popcorn. (Happiness 210, #2) &lt;/li&gt;
+ &lt;li&gt; Slept in movie. (Happiness 20, #3) &lt;/li&gt; &lt;/ul&gt;&lt;/li&gt; 
+&lt;li&gt; I took her to hotel. (Happiness 300, #4) 
+ &lt;ul&gt;&lt;li&gt; Order her favourite Starter. (Happiness 160, #5) &lt;/li&gt;
+ &lt;li&gt; Came Late. (Happiness 40, #6) &lt;/li&gt;
+ &lt;li&gt; Greeted her with red flowers. (Happiness 190, #7) &lt;/li&gt; &lt;/ul&gt;&lt;/li&gt; 
+&lt;li&gt; Took her to park (Happiness 500, #8) 
+ &lt;ul&gt;&lt;li&gt; Greeted her with white flowers(Happiness 160, #9) &lt;/li&gt;
+ &lt;li&gt; Came Late. (Happiness 40, #10) &lt;/li&gt;
+ &lt;li&gt; Bought her some chocolates. (Happiness 300, #11) &lt;/li&gt;
+ &lt;li&gt; Went for a stroll. (Happiness 250, #11) &lt;/li&gt; &lt;/ul&gt;&lt;/li&gt; 
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;making-a-graph-and-converting-it-to-tree&quot;&gt;Making a Graph, and Converting it to Tree:&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Finding the centroid of a tree&lt;/strong&gt; : One way to find the centroid is to pick an arbitrary root, then run a  depth-first search computing the size of each subtree, and then move  starting from root to the largest subtree until we reach a vertex where  no subtree has size greater than or equal to N/2. This vertex would be the centroid of the tree.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Decomposing the Tree to get the new “Centroid Tree” : &lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;img-fluid&quot; src=&quot;img/blog/centroidDecomp1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On removing the centroid, the original given tree decomposes into a number of different trees, each having no of nodes &amp;lt;= N/2. We make this centroid the root of our centroid tree and then recursively decompose each of the new trees formed and attach their centroids as children to our root. Thus , a new centroid tree is formed from the original tree.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Centroid Tree would be as follows:&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;img-fluid&quot; src=&quot;img/blog/centroidDecomp2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;usage&quot;&gt;Usage:&lt;/h2&gt;
+
+&lt;p&gt;Now whenever you want to increase happiness, all you need to do is:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Find any event with greater happiness and do-able in that situation.&lt;/li&gt;
+  &lt;li&gt;Fire a query in graph for finding shortest possible way.&lt;/li&gt;
+  &lt;li&gt;Follow that way.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;example&quot;&gt;Example:&lt;/h3&gt;
+
+&lt;p&gt;Now if she is unhappy because I came late to park (case #10) and I want happiness to be 190.
+I know that case #7 is appropriate.
+So i will see graph and know that, best possible way to do that is:
+#10 -&amp;gt; #8 -&amp;gt; #0 -&amp;gt; #4 -&amp;gt; #7
+So event would be: I took her to park -&amp;gt; I came Late -&amp;gt; to recover -&amp;gt; I took her to hotel -&amp;gt; Greeted her with red flowers 😉&lt;/p&gt;
+
+&lt;p&gt;Thus, problem solved. This may look obvious, but this will become more helpful as duration increase, and you have a lot to deal with. 😂&lt;/p&gt;
+
+&lt;h5 id=&quot;thankyou-stay-tuned&quot;&gt;ThankYou!! Stay Tuned!!&lt;/h5&gt;</content><author><name></name></author><summary type="html">Keep your Girlfriend happy, with Centroid Decomposition</summary></entry><entry><title type="html">ProtonMail – Encrypted Email Service.</title><link href="http://localhost:4000/proton-mail" rel="alternate" type="text/html" title="ProtonMail – Encrypted Email Service." /><published>2019-09-09T00:00:00+05:30</published><updated>2019-09-09T00:00:00+05:30</updated><id>http://localhost:4000/proton-mail</id><content type="html" xml:base="http://localhost:4000/proton-mail">&lt;h1 id=&quot;think-your-e-mails-private-think-again--protonmail--encrypted-email-service&quot;&gt;Think your e-mail’s private? Think again | ProtonMail – Encrypted Email Service.&lt;/h1&gt;
+
+&lt;p&gt;25yrs ago, scientists at &lt;a href=&quot;https://home.cern/&quot;&gt;CERN&lt;/a&gt; created World Wide Web (WWW).Since then, the internet has transformed the way we do business, the way we communicate, and even the way we leave. In many ways, the ideas that gave birth to Google, Facebook, Twitter and many other tech-giants have now really transformed our lives, and this has brought us many real benefits such as more connected society. However, there is a downside effect to this. A huge amount of one’s personal information is online, and we add to this information, every single time we post on social media, each time we do a google search and each time we send an email. These data reveal what we think, what we do, where we go and almost everything. The more scary part is, this data now lasts forever! Now your data can and will outlive you. What has happened is, we have lost control over data, and also our privacy. There is one place where something about privacy can be done. That’s e-mail. Since email are not hosted by a particular company, there is something which can be done. That is, Encryption!!&lt;/p&gt;
+
+&lt;p&gt;Your email is nothing but a collection of letters printed on a post card, which can be read by everyone along the way(Email Provider, ISP, etc.). Solution to this problem is, encrypting email, and passing it along with a given key. But now, there is again a problem. Now, your postcard is in the lock, but again with key attached to it. Anyone can apply that key and open the lock, resulting in loss of privacy again. Here comes ProtonMail into action!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;protonmail&quot;&gt;ProtonMail:&lt;/h2&gt;
+&lt;p&gt;ProtonMail is the world’s largest secure email service, developed by CERN and MIT scientists. We are open source and protected by Swiss privacy law. ProtonMail is incorporated in Switzerland and all our servers are located in Switzerland. This means all user data is protected by strict Swiss privacy laws.&lt;/p&gt;
+
+&lt;h4 id=&quot;protonmail-website&quot;&gt;&lt;a href=&quot;https://protonmail.com/&quot;&gt;ProtonMail Website&lt;/a&gt;&lt;/h4&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;working-principle-of-protonmail-very-interesting&quot;&gt;Working principle of ProtonMail (Very Interesting):&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;img/blog/encrypted-protected-explanation.jpg&quot; alt=&quot;BobAlice Explaination&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To solve above discussed problem, ProtonMail came up with a solution. What they did is they generated two keys for each user, each being mathematically connected. Let us consider that Bob is sending mail to Alice. Now, Alice has two keys (Public Key and Private Key). Public key is sent to Bob which is used to encrypt mail. That mail can only be decrypted by some unknown, self-encrypted mathematical modification. That modification is the other key which is with Alice. From the whole scenario, it turns out that the key is only with Alice. Thus, only Alice can decrypt mail and view its contents, neither the provider, nor the government &lt;b&gt;Not even sender (Bob)&lt;/b&gt;&lt;/p&gt;
+
+&lt;hr /&gt;</content><author><name></name></author><summary type="html">Think your e-mail’s private? Think again | ProtonMail – Encrypted Email Service.</summary></entry></feed>
