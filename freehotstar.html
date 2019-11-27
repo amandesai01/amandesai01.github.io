@@ -124,13 +124,13 @@
                                                             <input onclick="copyToClipboard('password')" readonly="" name="id" id="password" value="Generated Password"> </li>
                                                             <li class="list-group-item"> <label for="expiry">Expiry : </label>
                                                                 <input onclick="copyToClipboard('password')" readonly="" name="id" id="expiry" value="Expiry"> </li>
-                                                        <!-- <li class="list-group-item"> <button onclick="copyToClipboard('creds')" id = "creds" class="btn btn-outline-info">Copy!</button></li> -->
+                                                        <li class="list-group-item"><center><button onclick="copyAll()" class="btn btn-info" id="copyall">Copy Id+Pass</button></center></li>
                                                 </ul>
                                         </div>
                                 </div>
                                 
                                 <br>
-                                
+                                <input type="hidden" value="null" id="cont">
                                 <!--credentials display-->
                                 <!-- <div id="credentials" style="visibility:visible">
                                   <label for="email">Email</label>
